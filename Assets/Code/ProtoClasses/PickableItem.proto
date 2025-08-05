@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+message ItemPickupRequest {
+    uint32 playerId = 1;
+    uint32 itemId = 2;
+}
+
+message ItemPickupResponse {
+    bool success = 1;
+    uint32 itemId = 2; 
+}
+
+message ItemRemoved {
+    uint32 itemId =1;
+}
