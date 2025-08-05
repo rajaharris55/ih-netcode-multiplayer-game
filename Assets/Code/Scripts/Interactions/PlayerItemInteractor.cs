@@ -7,6 +7,7 @@ public class PlayerItemInteractor : NetworkBehaviour
     [SerializeField] private float interactionDistance = 3f;
     [SerializeField] private KeyCode interactKey = KeyCode.E;
     [SerializeField] private LayerMask itemLayerMask;
+    [SerializeField] private GameObject playerArmature;
 
     private void Update()
     {
@@ -21,7 +22,7 @@ public class PlayerItemInteractor : NetworkBehaviour
     private void TryPickUpItem()
     {
         Collider[] colliders = Physics.OverlapSphere(
-            transform.position,
+            playerArmature.transform.position,
             interactionDistance,
             itemLayerMask
         );
@@ -33,7 +34,7 @@ public class PlayerItemInteractor : NetworkBehaviour
         {
             if (collider.TryGetComponent<NetworkPickableItem>(out var item))
             {
-                float distance = Vector3.Distance(transform.position, collider.transform.position);
+                float distance = Vector3.Distance(playerArmature.transform.position, collider.transform.position);
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
