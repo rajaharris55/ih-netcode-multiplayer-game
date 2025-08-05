@@ -23,14 +23,15 @@ public static partial class PickableItemReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "ChJQaWNrYWJsZUl0ZW0ucHJvdG8iNQoRSXRlbVBpY2t1cFJlcXVlc3QSEAoI",
-          "cGxheWVySWQYASABKA0SDgoGaXRlbUlkGAIgASgNIjUKEkl0ZW1QaWNrdXBS",
-          "ZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEg4KBml0ZW1JZBgCIAEoDSIdCgtJ",
-          "dGVtUmVtb3ZlZBIOCgZpdGVtSWQYASABKA1iBnByb3RvMw=="));
+          "cGxheWVySWQYASABKA0SDgoGaXRlbUlkGAIgASgNIkcKEkl0ZW1QaWNrdXBS",
+          "ZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEg4KBml0ZW1JZBgCIAEoDRIQCghw",
+          "bGF5ZXJJZBgDIAEoDSIdCgtJdGVtUmVtb3ZlZBIOCgZpdGVtSWQYASABKA1i",
+          "BnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::ItemPickupRequest), global::ItemPickupRequest.Parser, new[]{ "PlayerId", "ItemId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ItemPickupResponse), global::ItemPickupResponse.Parser, new[]{ "Success", "ItemId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ItemPickupResponse), global::ItemPickupResponse.Parser, new[]{ "Success", "ItemId", "PlayerId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ItemRemoved), global::ItemRemoved.Parser, new[]{ "ItemId" }, null, null, null, null)
         }));
   }
@@ -310,6 +311,7 @@ public sealed partial class ItemPickupResponse : pb::IMessage<ItemPickupResponse
   public ItemPickupResponse(ItemPickupResponse other) : this() {
     success_ = other.success_;
     itemId_ = other.itemId_;
+    playerId_ = other.playerId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -343,6 +345,18 @@ public sealed partial class ItemPickupResponse : pb::IMessage<ItemPickupResponse
     }
   }
 
+  /// <summary>Field number for the "playerId" field.</summary>
+  public const int PlayerIdFieldNumber = 3;
+  private uint playerId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PlayerId {
+    get { return playerId_; }
+    set {
+      playerId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -360,6 +374,7 @@ public sealed partial class ItemPickupResponse : pb::IMessage<ItemPickupResponse
     }
     if (Success != other.Success) return false;
     if (ItemId != other.ItemId) return false;
+    if (PlayerId != other.PlayerId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -369,6 +384,7 @@ public sealed partial class ItemPickupResponse : pb::IMessage<ItemPickupResponse
     int hash = 1;
     if (Success != false) hash ^= Success.GetHashCode();
     if (ItemId != 0) hash ^= ItemId.GetHashCode();
+    if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -395,6 +411,10 @@ public sealed partial class ItemPickupResponse : pb::IMessage<ItemPickupResponse
       output.WriteRawTag(16);
       output.WriteUInt32(ItemId);
     }
+    if (PlayerId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(PlayerId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -413,6 +433,10 @@ public sealed partial class ItemPickupResponse : pb::IMessage<ItemPickupResponse
       output.WriteRawTag(16);
       output.WriteUInt32(ItemId);
     }
+    if (PlayerId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(PlayerId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -428,6 +452,9 @@ public sealed partial class ItemPickupResponse : pb::IMessage<ItemPickupResponse
     }
     if (ItemId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ItemId);
+    }
+    if (PlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -446,6 +473,9 @@ public sealed partial class ItemPickupResponse : pb::IMessage<ItemPickupResponse
     }
     if (other.ItemId != 0) {
       ItemId = other.ItemId;
+    }
+    if (other.PlayerId != 0) {
+      PlayerId = other.PlayerId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -474,6 +504,10 @@ public sealed partial class ItemPickupResponse : pb::IMessage<ItemPickupResponse
           ItemId = input.ReadUInt32();
           break;
         }
+        case 24: {
+          PlayerId = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -499,6 +533,10 @@ public sealed partial class ItemPickupResponse : pb::IMessage<ItemPickupResponse
         }
         case 16: {
           ItemId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          PlayerId = input.ReadUInt32();
           break;
         }
       }

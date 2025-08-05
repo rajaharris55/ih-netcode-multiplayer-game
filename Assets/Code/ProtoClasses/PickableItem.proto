@@ -8,6 +8,7 @@ message ItemPickupRequest {
 message ItemPickupResponse {
     bool success = 1;
     uint32 itemId = 2; 
+    uint32 playerId = 3;
 }
 
 message ItemRemoved {
