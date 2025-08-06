@@ -13,7 +13,7 @@ Ensure consistent behavior in multiplayer games when multiple players attempt to
 ## Technologies & Assets Used
 
 ### Unity Frontend
-- **Engine:** Unity 2022 or later
+- **Engine:** Unity 6.1
 - **Netcode:** Unity Netcode for GameObjects
 - **Serialization:** Google Protobuf
 - **Assets:**
