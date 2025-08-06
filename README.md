@@ -53,3 +53,6 @@ Ensure consistent behavior in multiplayer games when multiple players attempt to
 
 ---
 
+### Project Management
+
+<img width="1626" height="528" alt="image" src="https://github.com/user-attachments/assets/3f769c5f-01fc-42d2-b23f-eaf3ba323741" />
