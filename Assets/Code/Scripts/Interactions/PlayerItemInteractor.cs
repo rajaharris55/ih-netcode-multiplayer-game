@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -8,6 +10,9 @@ public class PlayerItemInteractor : NetworkBehaviour
     [SerializeField] private KeyCode interactKey = KeyCode.E;
     [SerializeField] private LayerMask itemLayerMask;
     [SerializeField] private GameObject playerArmature;
+
+    [Header("UI")]
+    [SerializeField] TMP_Text confirmationText;
 
     private void Update()
     {
@@ -53,5 +58,18 @@ public class PlayerItemInteractor : NetworkBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, interactionDistance);
+    }
+
+    private void ConfirmItemPicked()
+    {
+        StartCoroutine(ConfirmPickup());
+    }
+
+    IEnumerator ConfirmPickup()
+    {
+        confirmationText.gameObject.SetActive(true);
+        confirmationText.text = "Item picked up!";
+        yield return new WaitForSeconds(2f);
+        confirmationText.gameObject.SetActive(false);
     }
 }

@@ -8,21 +8,33 @@ public class NetworkPickableItem : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void RequestItemPickupServerRPC(ulong playerId)
     {
-        if (isPickedUp) return;
+        if (isPickedUp)
+        {
+            NotifyItemPickupFailedClientRpc(playerId);
+            return;
+        }
 
         isPickedUp = true;
         NotifyItemPickedUpClientRpc(playerId);
+        Invoke(nameof(DespawnItem), 0.1f);
+    }
+
+    private void DespawnItem()
+    {
         NetworkObject.Despawn();
     }
 
     [ClientRpc]
     private void NotifyItemPickedUpClientRpc(ulong playerId)
     {
-        if (playerId == NetworkManager.Singleton.LocalClientId)
-        {
-            Debug.Log($"You picked up {this.gameObject.name}!");
-        }
+        PickupEvents.RaisePickupSuccess(this.NetworkObject, playerId);
         gameObject.SetActive(false);
+    }
+
+    [ClientRpc]
+    private void NotifyItemPickupFailedClientRpc(ulong playerId)
+    {
+        PickupEvents.RaisePickupFailed(this.NetworkObject, playerId);
     }
 
     public override void OnNetworkSpawn()
